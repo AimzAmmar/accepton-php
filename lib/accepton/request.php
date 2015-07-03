@@ -75,8 +75,6 @@ class Request {
     }
     $result_info = curl_getinfo($curl);
     $code = $result_info['http_code'];
-    print_r($result_info);
-    print_r($code);
     
     // throws Exception if $result contains an error, else do nothing
     \AcceptOn\Error\Error::from_response($result, $code);
