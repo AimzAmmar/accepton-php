@@ -63,20 +63,30 @@ class Request {
     curl_setopt($curl, CURLOPT_POST, count($fields));
     curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
 
-    $resp = curl_exec($curl);
-    if(!$resp){
-      die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
-    } else {
-      echo $resp;
-      return json_decode($resp);
+    return $this->return_response_or_error($curl);
+  }
+
+  private function return_response_or_error($curl) {
+    $result = curl_exec($curl);
+    $error_num = curl_errno($curl);
+    if ($error_num > 0) {
+      // throws Exception if curl generated an error. It different with http errors
+      \AcceptOn\Error\Error::curl_error($curl);
     }
+    $result_info = curl_getinfo($curl);
+    $code = $result_info['http_code'];
+    print_r($result_info);
+    print_r($code);
+    
+    // throws Exception if $result contains an error, else do nothing
+    \AcceptOn\Error\Error::from_response($result, $code);
+    return json_decode($result);
   }
 
   private static function urlencode_recursive($value) {
     if (is_string($value)) return urlencode($value);
     if (is_array($value)) {
       $array = array();
-
     }
   }
 
