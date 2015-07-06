@@ -1,5 +1,5 @@
 {
-    "name": "Accepton/Accepton",
+    "name": "accepton/accepton",
     "description": "GET PAID IN YOUR CUSTOMER'S PREFERRED METHOD",
     "require": {
         "php": ">=5.4.0",
