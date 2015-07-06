@@ -1,0 +1,8 @@
+{
+    "name": "Accepton/Accepton",
+    "description": "GET PAID IN YOUR CUSTOMER'S PREFERRED METHOD",
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*"
+    }
+}
