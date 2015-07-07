@@ -1,11 +1,8 @@
 {
     "name": "accepton/accepton",
     "description": "Get paid in your customer's preferred method",
-    "type": "composer",
-    "require": {
-        "ext-curl": "*"
-    },
-    "authors": [
+	"version": "1.0.0",
+	"authors": [
         {
             "name": "Nikita Berdnikov",
             "email": "berd.na@gmail.com"
