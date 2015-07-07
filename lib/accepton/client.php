@@ -5,9 +5,11 @@ namespace AcceptOn;
 require_once('api/refunding.php');
 require_once('api/tokenization.php');
 require_once('api/utils.php');
+require_once('api/querying.php');
 
 class Client {
 
+  use Querying;
   use Tokenization;
   use Refunding;
   use Utils;
