@@ -1,8 +1,19 @@
 {
-    "name": "Accepton/Accepton",
-    "description": "GET PAID IN YOUR CUSTOMER'S PREFERRED METHOD",
-    "require": {
-        "php": ">=5.4.0",
-        "ext-curl": "*"
-    }
+    "name": "accepton/accepton",
+    "description": "Get paid in your customer's preferred method",
+	"version": "1.0.0",
+    "autoload": {
+		"files": ["lib/accepton.php"]
+    },
+	"require": {
+		"php": ">=5.4.0",
+		"ext-curl": "*"
+	},
+	"authors": [
+        {
+            "name": "Nikita Berdnikov",
+            "email": "berd.na@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
 }

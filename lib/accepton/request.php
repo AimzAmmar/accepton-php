@@ -37,11 +37,12 @@ class Request {
     $headers = array();
     foreach ($this->headers as $key => $value) {
       $headers[] = $key.": ".$value;
+
     }
 
     $fields = array();
-    foreach ($this->options as $key => $value) {      
-      $fields[$key] = urlencode($value);
+    foreach ($this->options as $key => $value) {
+      $fields[urlencode($key)] = urlencode($value);
     }
 
     //url-ify the data for the POST
@@ -49,7 +50,13 @@ class Request {
     foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
     rtrim($fields_string, '&');
 
-    curl_setopt($curl, CURLOPT_URL, $this->path);
+
+    if (strtolower($this->request_method) == "get") {
+      curl_setopt($curl, CURLOPT_URL, $this->path.'?'.$fields_string);
+    } else {
+      curl_setopt($curl, CURLOPT_URL, $this->path);
+    }
+
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -60,8 +67,10 @@ class Request {
     // Uncomment for debugging with Fiddler http://www.telerik.com/fiddler
     //curl_setopt($curl, CURLOPT_PROXY, '127.0.0.1:8888');
 
-    curl_setopt($curl, CURLOPT_POST, count($fields));
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+    if (strtolower($this->request_method) == "post") {
+      curl_setopt($curl, CURLOPT_POST, count($fields));
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+    }
 
     return $this->return_response_or_error($curl);
   }
@@ -78,6 +87,7 @@ class Request {
     
     // throws Exception if $result contains an error, else do nothing
     \AcceptOn\Error\Error::from_response($result, $code);
+
     return json_decode($result);
   }
 
