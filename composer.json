@@ -1,7 +1,6 @@
 {
     "name": "accepton/accepton",
     "description": "Get paid in your customer's preferred method",
-	"version": "1.0.0",
     "autoload": {
 		"files": ["lib/accepton.php"]
     },
