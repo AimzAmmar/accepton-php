@@ -15,10 +15,10 @@ trait Tokenization
             $values = $amount;
             $options = array(
                 "amount" => $values["amount"],
-                "application_fee" => isset($values["application_fee"]) ? $values["application_fee"] : null,
-                "currency" => isset($values["currency"]) ? $values["currency"] : "usd",
-                "description" => isset($values["description"]) ? $values["description"] : null,
-                "merchant_paypal_account" => isset($values["merchant_paypal_account"]) ? $values["merchant_paypal_account"] : null,
+                "application_fee" => $this->valueWithDefault($values["application_fee"]),
+                "currency" => $this->valueWithDefault($values["currency"], "usd"),
+                "description" => $this->valueWithDefault($values["description"]),
+                "merchant_paypal_account" => $this->valueWithDefault($values["merchant_paypal_account"]),
             );
         } else {
             $options = array(
@@ -35,5 +35,16 @@ trait Tokenization
         }
 
         return $this->performPostWithObject("/v1/tokens", $options, "AcceptOn\TransactionToken");
+    }
+
+    private function valueWithDefault($value, $default = null)
+    {
+        $newValue = $default;
+
+        if (isset($value)) {
+            $newValue = $value;
+        }
+
+        return $newValue;
     }
 }
