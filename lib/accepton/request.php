@@ -29,8 +29,6 @@ class Request {
     return array('environment' => 'production');
   }
 
-  # @return [Hashie::Mash] if the request reutrns a success code
-  # @raise [AcceptOn::Error] if the request returns a failure code
   public function perform() {
     $curl = curl_init();
 
