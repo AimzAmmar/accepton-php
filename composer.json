@@ -18,7 +18,8 @@
     "sebastian/phpcpd": "^2.0",
     "sensiolabs/security-checker": "^3.0",
     "squizlabs/php_codesniffer": "^2.6",
-    "vinkla/climb": "^0.8.1"
+    "vinkla/climb": "^0.8.1",
+    "d11wtq/boris": "^1.0"
   },
   "autoload": {
     "files": ["lib/accepton.php"]
