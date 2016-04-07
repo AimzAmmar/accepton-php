@@ -7,7 +7,7 @@ require_once('utils.php');
 trait Querying {
 
   public function charge($id) {
-    return $this->perform_post_with_object(
+    return $this->perform_get_with_object(
   	  '/v1/charges/'.$id,
       array("environment" => $this->environment),
       "AcceptOn\Charge");
@@ -29,8 +29,7 @@ trait Querying {
 	        "environment" => $this->environment,
     	);
   	}
-    return $this->perform_request_with_object(
-      'get',
+    return $this->perform_get_with_object(
   	  '/v1/charges',
       $options,
       "AcceptOn\ChargeList");

@@ -78,13 +78,14 @@ class Request {
   private function return_response_or_error($curl) {
     $result = curl_exec($curl);
     $error_num = curl_errno($curl);
+
     if ($error_num > 0) {
       // throws Exception if curl generated an error. It different with http errors
       \AcceptOn\Error\Error::curl_error($curl);
     }
     $result_info = curl_getinfo($curl);
     $code = $result_info['http_code'];
-    
+
     // throws Exception if $result contains an error, else do nothing
     \AcceptOn\Error\Error::from_response($result, $code);
 

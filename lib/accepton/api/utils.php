@@ -4,6 +4,10 @@ namespace AcceptOn;
 
 trait Utils {
 
+  private function perform_get_with_object($path, $params, $klass) {
+    return $this->perform_request_with_object("get", $path, $params, $klass);
+  }
+
   private function perform_post_with_object($path, $params, $klass) {
     return $this->perform_request_with_object("post", $path, $params, $klass);
   }
@@ -31,5 +35,5 @@ trait Utils {
     // search forward starting from end minus needle length characters
     return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
   }
-  
+
 }
