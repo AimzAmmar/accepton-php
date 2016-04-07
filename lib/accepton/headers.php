@@ -2,26 +2,28 @@
 
 namespace AcceptOn;
 
-class Headers {
+class Headers
+{
+    public $client;
 
-  public $client;
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-  public function __construct($client) {
-    $this->client = $client;
-  }
+    public function requestHeaders()
+    {
+        $headers = array(
+            "accept" => "application/json",
+            "authorization" => $this->bearerAuthHeader(),
+            "user_agent" => $this->client->userAgent(),
+        );
 
-  public function request_headers() {
-    $headers = array(
-      "accept" => "application/json",
-      "authorization" => $this->bearer_auth_header(),
-      "user_agent" => $this->client->user_agent(),
-    );
+        return $headers;
+    }
 
-    return $headers;
-  }
-
-  public function bearer_auth_header() {
-    return "Bearer ".$this->client->api_key;
-  }
-
+    private function bearerAuthHeader()
+    {
+        return "Bearer ".$this->client->api_key;
+    }
 }

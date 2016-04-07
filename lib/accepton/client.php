@@ -2,32 +2,29 @@
 
 namespace AcceptOn;
 
-require_once('api/refunding.php');
-require_once('api/tokenization.php');
-require_once('api/utils.php');
-require_once('api/querying.php');
+class Client
+{
+    use Querying;
+    use Refunding;
+    use Tokenization;
+    use Utils;
 
-class Client {
+    public $api_key;
+    public $environment;
 
-  use Querying;
-  use Tokenization;
-  use Refunding;
-  use Utils;
+    public function __construct($api_key, $environment = "production")
+    {
+        $this->api_key = $api_key;
+        $this->environment = $environment;
+    }
 
-  public $api_key, $environment;
+    public function hasApiKey()
+    {
+        return $this->api_key != null && is_string($this->api_key);
+    }
 
-  public function __construct($api_key, $environment = "production") {
-    $this->api_key = $api_key;
-    $this->environment = $environment;
-  }
-
-  public function has_api_key() {
-    return $this->api_key != null && is_string($this->api_key);
-  }
-
-  public static function user_agent() {
-    return "accepton-php/".\AcceptOn\VERSION;
-  }
-
-
+    public static function userAgent()
+    {
+        return "accepton-php/" . ACCEPTON_VERSION;
+    }
 }

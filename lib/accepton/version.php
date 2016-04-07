@@ -2,4 +2,4 @@
 
 namespace AcceptOn;
 
-define("AcceptOn\VERSION", '0.0.1');
+define("ACCEPTON_VERSION", "0.0.1");
