@@ -2,6 +2,10 @@
 
 namespace AcceptOn;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 class Refund extends \AcceptOn\Base
 {
     public $amount;

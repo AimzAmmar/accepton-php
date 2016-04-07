@@ -2,6 +2,10 @@
 
 namespace AcceptOn;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 class Charge extends \AcceptOn\Base
 {
     # amount [Integer] The amount charged in cents

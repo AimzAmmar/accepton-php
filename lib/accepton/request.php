@@ -5,7 +5,7 @@ namespace AcceptOn;
 class Request
 {
     public $client;
-    public $request_method;
+    public $requestMethod;
     public $headers;
     public $options;
     public $path;
@@ -16,13 +16,13 @@ class Request
         "production" => "https://checkout.accepton.com"
     );
 
-    public function __construct($client, $request_method, $path, $options = null)
+    public function __construct($client, $requestMethod, $path, $options = null)
     {
         $options = array_merge($this->defaultOptions(), $options);
         $url = $this->urls[$options["environment"]];
         unset($options["environment"]);
         $this->client = $client;
-        $this->request_method = $request_method;
+        $this->request_method = $requestMethod;
         $uri = Utils::startsWith($path, "http") ? $path : $url . $path;
         $this->options = $options;
         $this->path = $uri;
@@ -44,14 +44,14 @@ class Request
             $fields[urlencode($key)] = urlencode($value);
         }
 
-        $fields_string  = "";
+        $fieldsString  = "";
         foreach ($fields as $key => $value) {
-            $fields_string .= $key . "=" . $value . "&";
+            $fieldsString .= $key . "=" . $value . "&";
         }
-        $fields_string = rtrim($fields_string, "&");
+        $fieldsString = rtrim($fieldsString, "&");
 
         if ($this->request_method == "get") {
-            curl_setopt($curl, CURLOPT_URL, $this->path . "?" . $fields_string);
+            curl_setopt($curl, CURLOPT_URL, $this->path . "?" . $fieldsString);
         } else {
             curl_setopt($curl, CURLOPT_URL, $this->path);
         }
@@ -65,7 +65,7 @@ class Request
 
         if (strtolower($this->request_method) == "post") {
             curl_setopt($curl, CURLOPT_POST, count($fields));
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $fieldsString);
         }
 
         return $this->returnResponseOrError($curl);
@@ -78,19 +78,19 @@ class Request
 
     private function returnResponseOrError($curl)
     {
-        $result = curl_exec($curl);
-        $error_num = curl_errno($curl);
+        $response = curl_exec($curl);
+        $error = curl_errno($curl);
 
-        if ($error_num > 0) {
+        if ($error > 0) {
             // throws Exception if curl generated an error. It different with http errors
             \AcceptOn\Error\Error::curlError($curl);
         }
-        $result_info = curl_getinfo($curl);
-        $code = $result_info["http_code"];
+        $responseInfo = curl_getinfo($curl);
+        $code = $responseInfo["http_code"];
 
-        // throws Exception if $result contains an error, else do nothing
-        \AcceptOn\Error\Error::fromResponse($result, $code);
+        // throws Exception if $response contains an error, else do nothing
+        \AcceptOn\Error\Error::fromResponse($response, $code);
 
-        return json_decode($result);
+        return json_decode($response);
     }
 }

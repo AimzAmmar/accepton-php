@@ -2,6 +2,11 @@
 
 namespace AcceptOn;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 class TransactionToken extends \AcceptOn\Base
 {
     public $amount;

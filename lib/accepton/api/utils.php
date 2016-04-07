@@ -23,15 +23,15 @@ trait Utils
         return $this->performRequestWithObject("post", $path, $params, $klass);
     }
 
-    private function performRequest($request_method, $path, $params)
+    private function performRequest($requestMethod, $path, $params)
     {
-        $request = new \AcceptOn\Request($this, $request_method, $path, $this->withEnvironment($params));
+        $request = new \AcceptOn\Request($this, $requestMethod, $path, $this->withEnvironment($params));
         return $request->perform();
     }
 
-    private function performRequestWithObject($request_method, $path, $params, $klass)
+    private function performRequestWithObject($requestMethod, $path, $params, $klass)
     {
-        $response = $this->performRequest($request_method, $path, $params);
+        $response = $this->performRequest($requestMethod, $path, $params);
         return new $klass($response);
     }
 

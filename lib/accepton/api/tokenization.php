@@ -2,31 +2,34 @@
 
 namespace AcceptOn;
 
+/**
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 trait Tokenization
 {
     public function createToken(
         $amount,
-        $application_fee = null,
+        $applicationFee = null,
         $currency = "usd",
         $description = null,
-        $merchant_paypal_account = null
+        $merchantPaypalAccount = null
     ) {
         if (is_array($amount) && isset($amount["amount"])) {
             $values = $amount;
             $options = array(
                 "amount" => $values["amount"],
-                "application_fee" => $this->valueWithDefault($values["application_fee"]),
+                "applicationFee" => $this->valueWithDefault($values["applicationFee"]),
                 "currency" => $this->valueWithDefault($values["currency"], "usd"),
                 "description" => $this->valueWithDefault($values["description"]),
-                "merchant_paypal_account" => $this->valueWithDefault($values["merchant_paypal_account"]),
+                "merchantPaypalAccount" => $this->valueWithDefault($values["merchantPaypalAccount"]),
             );
         } else {
             $options = array(
                 "amount" => $amount,
-                "application_fee" => $application_fee,
+                "applicationFee" => $applicationFee,
                 "currency" => $currency,
                 "description" => $description,
-                "merchant_paypal_account" => $merchant_paypal_account,
+                "merchantPaypalAccount" => $merchantPaypalAccount,
             );
         }
 

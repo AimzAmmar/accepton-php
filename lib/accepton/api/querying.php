@@ -4,21 +4,21 @@ namespace AcceptOn;
 
 trait Querying
 {
-    public function charge($id)
+    public function charge($chargeId)
     {
         return $this->performGetWithObject(
-            "/v1/charges/".$id,
-            array("environment" => $this->environment),
+            "/v1/charges/" . $chargeId,
+            array(),
             "AcceptOn\Charge"
         );
     }
 
     public function charges(
         $amount,
-        $charge_id,
-        $start_date = null,
-        $end_date = null,
-        $order_by = null,
+        $chargeId,
+        $startDate = null,
+        $endDate = null,
+        $orderBy = null,
         $order = null
     ) {
         $options = array();
@@ -30,10 +30,10 @@ trait Querying
         } else {
             $options = array(
                 "amount" => $amount,
-                "charge_id" => $charge_id,
-                "start_date" => $start_date,
-                "end_date" => $end_date,
-                "order_by" => $order_by,
+                "chargeId" => $chargeId,
+                "startDate" => $startDate,
+                "endDate" => $endDate,
+                "orderBy" => $orderBy,
                 "order" => $order,
                 "environment" => $this->environment,
             );

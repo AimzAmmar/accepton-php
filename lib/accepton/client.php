@@ -9,18 +9,18 @@ class Client
     use Tokenization;
     use Utils;
 
-    public $api_key;
+    public $apiKey;
     public $environment;
 
-    public function __construct($api_key, $environment = "production")
+    public function __construct($apiKey, $environment = "production")
     {
-        $this->api_key = $api_key;
+        $this->apiKey = $apiKey;
         $this->environment = $environment;
     }
 
     public function hasApiKey()
     {
-        return $this->api_key != null && is_string($this->api_key);
+        return $this->apiKey != null && is_string($this->apiKey);
     }
 
     public static function userAgent()

@@ -8,8 +8,8 @@ class Error extends \Exception
     {
         try {
             $num = curl_errno($curl);
-            $error_message = curl_error($curl);
-            throw new \AcceptOn\Error\Error($error_message, $num);
+            $errorMessage = curl_error($curl);
+            throw new \AcceptOn\Error\Error($errorMessage, $num);
         } catch (\AcceptOn\Error\Error $e) {
             throw $e;
         } catch (Exception $e) {
@@ -18,24 +18,14 @@ class Error extends \Exception
     }
 
 
-    public static function fromResponse($response_body, $status_code, $exception_previous = null)
+    public static function fromResponse($responseBody, $statusCode, $previousException = null)
     {
-        if (!isset(self::$errors[$status_code])) {
+        if (!isset(self::$errors[$statusCode])) {
             return null;
         }
-        $errorClass = self::$errors[$status_code];
-        $message = self::parse_error($response_body);
-        throw new $errorClass($message, $status_code, $exception_previous);
-    }
-
-    private static function parseError($response_body)
-    {
-        try {
-            $obj = json_decode($response_body);
-            return $obj->error->message;
-        } catch (Exception $e) {
-            return "";
-        }
+        $errorClass = self::$errors[$statusCode];
+        $message = self::parse_error($responseBody);
+        throw new $errorClass($message, $statusCode, $previousException);
     }
 
     private static $errors = array(
