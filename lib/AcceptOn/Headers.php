@@ -14,9 +14,9 @@ class Headers
     public function requestHeaders()
     {
         $headers = array(
-            "accept" => "application/json",
-            "authorization" => $this->bearerAuthHeader(),
-            "user_agent" => $this->client->userAgent(),
+            "Accept" => "application/json",
+            "Authorization" => $this->bearerAuthHeader(),
+            "User-Agent" => $this->client->userAgent(),
         );
 
         return $headers;
@@ -24,6 +24,6 @@ class Headers
 
     private function bearerAuthHeader()
     {
-        return "Bearer ".$this->client->apiKey;
+        return "Bearer " . $this->client->apiKey;
     }
 }

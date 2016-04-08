@@ -2,6 +2,10 @@
 
 namespace AcceptOn;
 
+use \Http\Client\HttpClient;
+
+use \AcceptOn\Error\Error;
+
 class Request
 {
     public $client;
@@ -10,8 +14,12 @@ class Request
     public $options;
     public $path;
 
+    private $httpClient;
+    private $messageFactory;
+
     private $urls = array(
         "development" => "http://checkout.accepton.dev",
+        "test" => "http://localhost:8082",
         "staging" => "https://staging-checkout.accepton.com",
         "production" => "https://checkout.accepton.com"
     );
@@ -22,7 +30,7 @@ class Request
         $url = $this->urls[$options["environment"]];
         unset($options["environment"]);
         $this->client = $client;
-        $this->request_method = $requestMethod;
+        $this->requestMethod = $requestMethod;
         $uri = Utils::startsWith($path, "http") ? $path : $url . $path;
         $this->options = $options;
         $this->path = $uri;
@@ -32,13 +40,39 @@ class Request
 
     public function perform()
     {
-        $curl = curl_init();
+        $response = $this->http()->sendRequest($this->createRequest());
 
-        $headers = array();
-        foreach ($this->headers as $key => $value) {
-            $headers[] = $key . ": " . $value;
+        return $this->throwOrReturnResponseBody($response->getBody(), $response->getStatusCode());
+    }
+
+    private function createRequest()
+    {
+        $messageFactory = $this->messageFactory();
+        $body = $this->options;
+
+        if ($this->requestMethod === "get") {
+            $uri = $this->path . "?" . $this->encodeFields();
+            $body = null;
+        } else {
+            $uri = $this->path;
+            $body = json_encode($body);
         }
 
+        return $this->messageFactory()->createRequest(
+            $this->requestMethod,
+            $uri,
+            $this->headers,
+            $body
+        );
+    }
+
+    private function defaultOptions()
+    {
+        return array("environment" => "production");
+    }
+
+    private function encodeFields()
+    {
         $fields = array();
         foreach ($this->options as $key => $value) {
             $fields[urlencode($key)] = urlencode($value);
@@ -50,47 +84,27 @@ class Request
         }
         $fieldsString = rtrim($fieldsString, "&");
 
-        if ($this->request_method == "get") {
-            curl_setopt($curl, CURLOPT_URL, $this->path . "?" . $fieldsString);
-        } else {
-            curl_setopt($curl, CURLOPT_URL, $this->path);
-        }
-
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        // disabling SSL verification (for debug only)
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-
-        if (strtolower($this->request_method) == "post") {
-            curl_setopt($curl, CURLOPT_POST, count($fields));
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $fieldsString);
-        }
-
-        return $this->returnResponseOrError($curl);
+        return $fieldsString;
     }
 
-    private function defaultOptions()
+    private function http()
     {
-        return array("environment" => "production");
+        return $this->client->http();
     }
 
-    private function returnResponseOrError($curl)
+    private function messageFactory()
     {
-        $response = curl_exec($curl);
-        $error = curl_errno($curl);
+        return $this->client->messageFactory();
+    }
 
-        if ($error > 0) {
-            // throws Exception if curl generated an error. It different with http errors
-            \AcceptOn\Error\Error::curlError($curl);
+    private function throwOrReturnResponseBody($body, $statusCode)
+    {
+        $error = Error::fromResponse($body, $statusCode);
+
+        if (isset($error)) {
+            throw $error;
         }
-        $responseInfo = curl_getinfo($curl);
-        $code = $responseInfo["http_code"];
 
-        // throws Exception if $response contains an error, else do nothing
-        \AcceptOn\Error\Error::fromResponse($response, $code);
-
-        return json_decode($response);
+        return json_decode($body);
     }
 }

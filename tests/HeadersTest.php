@@ -20,16 +20,16 @@ class HeadersTest extends \PHPUnit_Framework_TestCase
 
     public function testAcceptsHeader()
     {
-        $this->assertEquals("application/json", self::$requestHeaders["accept"]);
+        $this->assertEquals("application/json", self::$requestHeaders["Accept"]);
     }
 
     public function testBearerToken()
     {
-        $this->assertEquals("Bearer skey_123", self::$requestHeaders["authorization"]);
+        $this->assertEquals("Bearer skey_123", self::$requestHeaders["Authorization"]);
     }
 
     public function testUserAgent()
     {
-        $this->assertEquals(self::$client->userAgent(), self::$requestHeaders["user_agent"]);
+        $this->assertEquals(self::$client->userAgent(), self::$requestHeaders["User-Agent"]);
     }
 }
