@@ -1,18 +1,18 @@
 <?php
 
-require_once("accepton/base.php");
+require_once("AcceptOn/Base.php");
 
-require_once("accepton/charge.php");
-require_once("accepton/charge_list.php");
-require_once("accepton/errors.php");
-require_once("accepton/headers.php");
-require_once("accepton/refund.php");
-require_once("accepton/request.php");
-require_once("accepton/transaction_token.php");
-require_once("accepton/version.php");
+require_once("AcceptOn/Charge.php");
+require_once("AcceptOn/ChargeList.php");
+require_once("AcceptOn/Errors.php");
+require_once("AcceptOn/Headers.php");
+require_once("AcceptOn/Refund.php");
+require_once("AcceptOn/Request.php");
+require_once("AcceptOn/TransactionToken.php");
+require_once("AcceptOn/Version.php");
 
-require_once("accepton/api/utils.php");
-require_once("accepton/api/refunding.php");
-require_once("accepton/api/tokenization.php");
-require_once("accepton/api/querying.php");
-require_once("accepton/client.php");
+require_once("AcceptOn/API/Utils.php");
+require_once("AcceptOn/API/Refunding.php");
+require_once("AcceptOn/API/Tokenization.php");
+require_once("AcceptOn/API/Querying.php");
+require_once("AcceptOn/Client.php");

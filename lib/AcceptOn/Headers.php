@@ -24,6 +24,6 @@ class Headers
 
     private function bearerAuthHeader()
     {
-        return "Bearer ".$this->client->api_key;
+        return "Bearer ".$this->client->apiKey;
     }
 }
