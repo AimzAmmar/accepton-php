@@ -28,16 +28,16 @@
     "internations/http-mock": "^0.7.4"
   },
   "autoload": {
-    "files": ["lib/accepton.php"]
+    "files": ["src/accepton.php"]
   },
   "scripts": {
     "check": ["@phplint", "@phpcs", "@phpmd", "@phpcpd"],
     "climb": "climb",
     "dev": ["@check", "@security", "@test"],
-    "phpcpd": "phpcpd lib",
-    "phpcs": "phpcs --standard=PSR2 {lib,tests}",
-    "phplint": "php -l {lib,tests}",
-    "phpmd": "phpmd lib text unusedcode,naming,design,controversial,codesize",
+    "phpcpd": "phpcpd src",
+    "phpcs": "phpcs --standard=PSR2 {src,tests}",
+    "phplint": "php -l {src,tests}",
+    "phpmd": "phpmd src text unusedcode,naming,design,controversial,codesize",
     "phpunit": "phpunit",
     "security": ["@climb", "@security_checker"],
     "security_checker": "security-checker security:check",

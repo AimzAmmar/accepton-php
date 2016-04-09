@@ -1,6 +1,6 @@
 <?php
 
-require ("../lib/accepton.php");
+require ("../src/accepton.php");
 
 define("API_KEY", "skey_2beab875f373d5e605f13207be57c82c");
 
