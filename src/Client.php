@@ -8,10 +8,10 @@ use \Http\Message\MessageFactory;
 
 class Client
 {
-    use Querying;
-    use Refunding;
-    use Tokenization;
-    use Utils;
+    use API\Querying;
+    use API\Refunding;
+    use API\Tokenization;
+    use API\Utils;
 
     public $apiKey;
     public $environment;
@@ -51,6 +51,6 @@ class Client
 
     public static function userAgent()
     {
-        return "accepton-php/" . ACCEPTON_VERSION;
+        return "accepton-php/" . AcceptOn::VERSION;
     }
 }

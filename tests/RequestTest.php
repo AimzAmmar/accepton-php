@@ -1,6 +1,6 @@
 <?php
 
-namespace AcceptOn\Tests;
+namespace AcceptOn;
 
 use AcceptOn\Client;
 use AcceptOn\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AcceptOn\Tests;
+namespace AcceptOn;
 
 use AcceptOn\Client;
 
@@ -42,7 +42,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUserAgent()
     {
-        $expected = "accepton-php/" . ACCEPTON_VERSION;
+        $expected = "accepton-php/" . AcceptOn::VERSION;
         $client = new Client("test");
         $this->assertEquals($expected, $client->userAgent());
     }

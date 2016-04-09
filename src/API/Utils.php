@@ -1,6 +1,6 @@
 <?php
 
-namespace AcceptOn;
+namespace AcceptOn\API;
 
 trait Utils
 {
