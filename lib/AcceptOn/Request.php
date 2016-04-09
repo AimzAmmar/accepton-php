@@ -31,9 +31,8 @@ class Request
         unset($options["environment"]);
         $this->client = $client;
         $this->requestMethod = $requestMethod;
-        $uri = Utils::startsWith($path, "http") ? $path : $url . $path;
         $this->options = $options;
-        $this->path = $uri;
+        $this->path = $url . $path;
         $headers = new \AcceptOn\Headers($client);
         $this->headers = $headers->requestHeaders();
     }

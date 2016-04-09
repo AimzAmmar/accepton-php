@@ -13,19 +13,6 @@ class Error extends \Exception
         $this->statusCode = $statusCode;
     }
 
-    public static function curlError($curl)
-    {
-        try {
-            $num = curl_errno($curl);
-            $errorMessage = curl_error($curl);
-            throw new \AcceptOn\Error\Error($errorMessage, $num);
-        } catch (\AcceptOn\Error\Error $e) {
-            throw $e;
-        } catch (Exception $e) {
-            return null;
-        }
-    }
-
     public static function errors()
     {
         return self::$errors;
