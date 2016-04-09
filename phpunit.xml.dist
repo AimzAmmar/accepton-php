@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         convertErrorsToExceptions="true"
-         convertWarningsToExceptions="true"
-         convertNoticesToExceptions="true"
-         mapTestClassNameToCoveredClassName="true"
-         bootstrap="tests/bootstrap.php"
-         verbose="true"
-         colors="true"
-         timeoutForLargeTests="100">
-
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="accepton/accepton">
-            <directory>./tests/</directory>
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
-      </testsuites>
+    </testsuites>
 
     <filter>
-      <whitelist processUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">src</directory>
-      </whitelist>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
     </filter>
 
     <logging>
-        <log type="coverage-html" target="build/coverage" title="accepton code coverage"
-             charset="UTF-8" yui="true" highlight="true"
-             lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-html"
+             target="build/coverage"
+             title="accepton code coverage"
+             charset="UTF-8"
+             yui="true"
+             highlight="true" />
     </logging>
-
-    <php>
-        <ini name="error_reporting" value="-1"/>
-    </php>
 </phpunit>
