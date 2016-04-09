@@ -4,16 +4,11 @@ namespace AcceptOn;
 
 trait Refunding
 {
-
-    public function refund($amount, $chargeId)
+    public function refund($params = array())
     {
-        return $this->perform_post_with_object(
+        return $this->performPostWithObject(
             "/v1/refunds",
-            array(
-            "amount" => $amount,
-            "chargeId" => $chargeId,
-            "environment" => $this->environment,
-            ),
+            $params,
             "AcceptOn\Refund"
         );
     }
