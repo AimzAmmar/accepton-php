@@ -1,11 +1,14 @@
 {
   "name": "accepton/accepton",
   "description": "Get paid in your customer's preferred method",
+  "keywords": ["payment processing", "api", "stripe", "paypal", "braintree"],
+  "homepage": "https://developers.accepton.com",
   "license": "MIT",
   "authors": [
     {
       "name": "AcceptOn",
-      "email": "developers@accepton.com"
+      "email": "developers@accepton.com",
+      "homepage": "https://github.com/accepton/accepton-php"
     }
   ],
   "require": {
@@ -28,7 +31,9 @@
     "internations/http-mock": "^0.7.4"
   },
   "autoload": {
-    "files": ["src/accepton.php"]
+    "psr-4": {
+      "AcceptOn\\": "src"
+    }
   },
   "scripts": {
     "check": ["@phplint", "@phpcs", "@phpmd", "@phpcpd"],
