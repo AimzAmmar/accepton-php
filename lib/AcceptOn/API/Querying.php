@@ -13,35 +13,12 @@ trait Querying
         );
     }
 
-    public function charges(
-        $amount,
-        $chargeId,
-        $startDate = null,
-        $endDate = null,
-        $orderBy = null,
-        $order = null
-    ) {
-        $options = array();
-        if (is_array($amount)) {
-            $options = $amount;
-            if (!isset($options["environment"])) {
-                $options["environment"] = $this->environment;
-            }
-        } else {
-            $options = array(
-                "amount" => $amount,
-                "chargeId" => $chargeId,
-                "startDate" => $startDate,
-                "endDate" => $endDate,
-                "orderBy" => $orderBy,
-                "order" => $order,
-                "environment" => $this->environment,
-            );
-        }
-        return $this->performGetWithObject(
+    public function charges($params = array())
+    {
+        return $this->performGetWithObjects(
             "/v1/charges",
-            $options,
-            "AcceptOn\ChargeList"
+            $params,
+            "AcceptOn\Charge"
         );
     }
 }

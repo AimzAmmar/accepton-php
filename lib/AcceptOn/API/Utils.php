@@ -18,6 +18,11 @@ trait Utils
         return $this->performRequestWithObject("get", $path, $params, $klass);
     }
 
+    private function performGetWithObjects($path, $params, $klass)
+    {
+        return $this->performRequestWithObjects("get", $path, $params, $klass);
+    }
+
     private function performPostWithObject($path, $params, $klass)
     {
         return $this->performRequestWithObject("post", $path, $params, $klass);
@@ -33,6 +38,19 @@ trait Utils
     {
         $response = $this->performRequest($requestMethod, $path, $params);
         return new $klass($response);
+    }
+
+    private function performRequestWithObjects($requestMethod, $path, $params, $klass)
+    {
+        $response = $this->performRequest($requestMethod, $path, $params);
+        $objects = array();
+
+
+        foreach ($response->data as $idx =>$object) {
+            array_push($objects, new $klass($object));
+        }
+
+        return $objects;
     }
 
     private function withEnvironment($params)

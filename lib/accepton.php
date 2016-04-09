@@ -3,7 +3,6 @@
 require_once("AcceptOn/Base.php");
 
 require_once("AcceptOn/Charge.php");
-require_once("AcceptOn/ChargeList.php");
 require_once("AcceptOn/Errors.php");
 require_once("AcceptOn/Headers.php");
 require_once("AcceptOn/Refund.php");
