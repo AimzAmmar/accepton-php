@@ -36,8 +36,7 @@ trait Utils
         $response = $this->performRequest($requestMethod, $path, $params);
         $objects = array();
 
-
-        foreach ($response->data as $idx =>$object) {
+        foreach ($response->data as $object) {
             array_push($objects, new $klass($object));
         }
 

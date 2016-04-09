@@ -14,9 +14,6 @@ class Request
     public $options;
     public $path;
 
-    private $httpClient;
-    private $messageFactory;
-
     private $urls = array(
         "development" => "http://checkout.accepton.dev",
         "test" => "http://localhost:8082",
@@ -46,7 +43,6 @@ class Request
 
     private function createRequest()
     {
-        $messageFactory = $this->messageFactory();
         $body = $this->options;
 
         if ($this->requestMethod === "get") {

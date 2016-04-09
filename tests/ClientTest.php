@@ -18,8 +18,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $messageFactory = "my factory";
         $client = new Client("test", "development", $http, $messageFactory);
 
-       $this->assertEquals($http, $client->http());
-       $this->assertEquals($messageFactory, $client->messageFactory());
+        $this->assertEquals($http, $client->http());
+        $this->assertEquals($messageFactory, $client->messageFactory());
     }
 
     public function testDefaultsToProductionEnvironment()
