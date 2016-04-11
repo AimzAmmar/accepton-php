@@ -30,8 +30,13 @@ use AcceptOn\Client;
 $client = new Client(API_KEY, "staging");
 ```
 
+This library uses the [HTTPlug][httplug] interface to abstract the specific
+HTTP connection method used in the client. If you do not already have an
+HTTPlug-compatible client installed, you will need to install one.
+
 [composer]: https://getcomposer.org
 [autoload]: https://getcomposer.org/doc/01-basic-usage.md#autoloading
+[httplug]: http://php-http.org
 
 ## Contributing
 
