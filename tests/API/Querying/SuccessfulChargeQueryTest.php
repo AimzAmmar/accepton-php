@@ -48,12 +48,12 @@ class SuccessfulChargeQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("AcceptOn\Charge", get_class($charge));
         $this->assertEquals("chg_ff6024ab78980de7", $charge->id);
         $this->assertEquals(1000, $charge->amount);
-        $this->assertNull($charge->application_fee);
+        $this->assertNull($charge->applicationFee);
         $this->assertEquals("usd", $charge->currency);
         $this->assertEquals("Test Transaction", $charge->description);
         $this->assertNotNull($charge->metadata);
         $this->assertEquals(false, $charge->refunded);
-        $this->assertEquals("ch_16I54f2EZMTOjTLjGB8nd84P", $charge->remote_id);
+        $this->assertEquals("ch_16I54f2EZMTOjTLjGB8nd84P", $charge->remoteId);
         $this->assertEquals("paid", $charge->status);
     }
 }
