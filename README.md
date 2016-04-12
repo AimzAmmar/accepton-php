@@ -32,9 +32,8 @@ need to install one.
 Your `HTTPClient` and `MessageFactory` can then be auto-discovered using
 [Puli][puli].
 
-See the [list of HTTP clients][httpclients] and the [list of message
-factories][factories] to choose from. Also, the HTTPlug project has [quick
-start instructions][clients] for a number of the clients.
+See the [list of HTTP clients][httpclients]  to choose from. Also, the HTTPlug
+project has [quick start instructions][clients] for a number of the clients.
 
 ### Using Service Discovery
 
