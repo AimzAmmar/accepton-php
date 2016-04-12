@@ -15,6 +15,12 @@ $client = new Client(API_KEY, "staging");
 $client->setHttpClient($httpClient);
 $client->setMessageFactory($messageFactory);
 
-$charges = $client->charges(1000, "chg_123", "2015-06-01", "2015-07-01", "created_at", "asc");
+$params = array(
+    "start_date" => "2015-06-01",
+    "end_date" => "2015-07-01",
+    "order_by" => "created_at",
+    "order" => "asc"
+);
+$charges = $client->charges($params);
 
 print_r($charges);
