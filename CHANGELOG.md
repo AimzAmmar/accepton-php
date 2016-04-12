@@ -6,7 +6,7 @@ scheme are considered to be bugs.
 
 [semver]: http://semver.org/spec/v2.0.0.html
 
-## Unreleased
+## 0.1.0 - 2016-04-12
 
 ### Added
 
