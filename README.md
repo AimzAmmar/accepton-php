@@ -25,8 +25,8 @@ require_once("vendor/autoload.php");
 ## Getting Started
 
 This library uses the [HTTPlug][httplug] interface to abstract the specific
-HTTP client and PSR-7 message factory used in the client. If you do not already
-have an HTTPlug-compatible client and [PSR-7][psr7] message factory installed,
+HTTP client and [PSR-7][psr7] message factory used in the client. If you do not
+already have an HTTPlug-compatible client and PSR-7 message factory installed,
 you will need to install one.
 
 Your `HTTPClient` and `MessageFactory` can then be auto-discovered using
