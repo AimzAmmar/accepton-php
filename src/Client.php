@@ -92,7 +92,8 @@ class Client
      *
      * @return void
      */
-    public function setHttpClient($httpClient) {
+    public function setHttpClient($httpClient)
+    {
         $this->http = $httpClient;
     }
 
@@ -105,7 +106,8 @@ class Client
      *
      * @return void
      */
-    public function setMessageFactory($messageFactory) {
+    public function setMessageFactory($messageFactory)
+    {
         $this->messageFactory = $messageFactory;
     }
 
