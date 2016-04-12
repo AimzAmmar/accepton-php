@@ -1,6 +1,6 @@
 # AcceptOn
 
-[![Build Status](https://circleci.com/gh/accepton/accepton-php.svg?style=shield&circle-token=76d9d3cf6e881e7a80b22cc68c223725ade7fa31)](https://circleci.com/gh/accepton/accepton-php)
+[![Build Status](https://circleci.com/gh/accepton/accepton-php.svg?style=shield&circle-token=81802f7db4ec24248da58f85dcd2ca3763de3a63)](https://circleci.com/gh/accepton/accepton-php)
 
 ## Documentation
 
