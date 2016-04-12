@@ -16,7 +16,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $http = "my http";
         $messageFactory = "my factory";
-        $client = new Client("test", "development", $http, $messageFactory);
+        $client = new Client("test", "development");
+
+        $client->setHttpClient($http);
+        $client->setMessageFactory($messageFactory);
 
         $this->assertEquals($http, $client->http());
         $this->assertEquals($messageFactory, $client->messageFactory());

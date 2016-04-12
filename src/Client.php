@@ -38,17 +38,13 @@ class Client
      *
      * @param string $apiKey The API key to use when connecting to AcceptOn.
      * @param string $environment The environment to use when connecting.
-     * @param Http\Client\HttpClient $http The HTTP client for sending messages to AcceptOn.
-     * @param Http\Message\MessageFactory $messageFactory The factory for creating HTTP messages.
      *
      * @return AcceptOn\Client
      */
-    public function __construct($apiKey, $environment = "production", $http = null, $messageFactory = null)
+    public function __construct($apiKey, $environment = "production")
     {
         $this->apiKey = $apiKey;
         $this->environment = $environment;
-        $this->http = $http;
-        $this->messageFactory = $messageFactory;
     }
 
     /**
@@ -85,6 +81,32 @@ class Client
         }
 
         return MessageFactoryDiscovery::find();
+    }
+
+    /**
+     * Sets the HTTPClient used to make requests.
+     *
+     * @api public
+     *
+     * @param \Http\Client\HttpClient $httpClient
+     *
+     * @return void
+     */
+    public function setHttpClient($httpClient) {
+        $this->http = $httpClient;
+    }
+
+    /**
+     * Sets the MessageFactory used to make requests.
+     *
+     * @api public
+     *
+     * @param \Http\Message\MessageFactory $messageFactory
+     *
+     * @return void
+     */
+    public function setMessageFactory($messageFactory) {
+        $this->messageFactory = $messageFactory;
     }
 
     /**
