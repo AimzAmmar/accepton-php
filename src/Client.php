@@ -8,6 +8,8 @@ use \Http\Message\MessageFactory;
 
 class Client
 {
+    use API\Planning;
+    use API\Promotion;
     use API\Querying;
     use API\Refunding;
     use API\Tokenization;

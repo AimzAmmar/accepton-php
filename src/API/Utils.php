@@ -11,6 +11,18 @@ trait Utils
      *
      * @return $klass
      */
+    private function performDeleteWithObject($path, $params, $klass)
+    {
+        return $this->performRequestWithObject("delete", $path, $params, $klass);
+    }
+
+    /**
+     * @param string $path
+     * @param mixed[] $params
+     * @param string $klass
+     *
+     * @return $klass
+     */
     private function performGetWithObject($path, $params, $klass)
     {
         return $this->performRequestWithObject("get", $path, $params, $klass);
@@ -38,6 +50,18 @@ trait Utils
     private function performPostWithObject($path, $params, $klass)
     {
         return $this->performRequestWithObject("post", $path, $params, $klass);
+    }
+
+    /**
+     * @param string $path
+     * @param mixed[] $params
+     * @param string $klass
+     *
+     * @return $klass
+     */
+    private function performPutWithObject($path, $params, $klass)
+    {
+        return $this->performRequestWithObject("put", $path, $params, $klass);
     }
 
     /**
