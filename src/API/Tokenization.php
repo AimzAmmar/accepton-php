@@ -16,6 +16,10 @@ trait Tokenization
      * @option string|null "description" A description of the transaction.
      * @option string|null "merchant_paypal_account" The merchant's PayPal account when you want
      *     to pay a merchant instead of yourself. Can be used with an application fee.
+     *
+     * @throws AcceptOn\Error
+     *
+     * @return AcceptOn\TransactionToken
      */
     public function createToken($params = array())
     {
