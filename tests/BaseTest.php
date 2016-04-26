@@ -2,7 +2,7 @@
 
 namespace AcceptOn;
 
-use AcceptOn\Base;
+use AcceptOn\Test\DemoBase;
 
 class BaseTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,12 +10,23 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        self::$model = new \AcceptOn\Base(array("foo" => "bar", "snake_case" => 1));
+        self::$model = new DemoBase(array(
+            "foo" => "bar",
+            "snake_case" => "1",
+            "boolean" => "1",
+            "bar" => "ignored"
+        ));
     }
 
     public function testKnownProperty()
     {
         $this->assertEquals("bar", self::$model->foo);
         $this->assertEquals(1, self::$model->snakeCase);
+        $this->assertEquals(true, self::$model->boolean);
+    }
+
+    public function testUnknownProperty()
+    {
+        $this->assertFalse(property_exists(get_class(self::$model), "bar"));
     }
 }

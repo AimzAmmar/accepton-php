@@ -3,26 +3,23 @@
 namespace AcceptOn;
 
 /**
- * @SuppressWarnings(PHPMD.LongVariable)
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * Represents the configuration for a transaction.
+ *
+ * @property integer $amount The amount of the transaction in cents.
+ * @property integer $applicationFee The amount in cents to apply as an application fee.
+ * @property array $created Date and time the token was created.
+ * @property string $description The description of the transaction.
+ * @property string $id The token identifier.
+ * @property string $merchantPaypalAccount The merchant's PayPal account when paying a merchant other than yourself.
  */
 class TransactionToken extends \AcceptOn\Base
 {
-    /** @var integer The amount of the transaction in cents. */
-    public $amount;
-
-    /** @var integer The amount in cents to apply as an application fee. */
-    public $applicationFee;
-
-    /** @var string Date and time the token was created in ISO-8601 format. */
-    public $created;
-
-    /** @var string The description of the transaction. */
-    public $description;
-
-    /** @var string The token identifier. */
-    public $id;
-
-    /** @var The merchant's PayPal account when paying a merchant other than yourself. */
-    public $merchantPaypalAccount;
+    protected static $allowedProperties = array(
+        "amount" => "int",
+        "applicationFee" => "int",
+        "created" => "date",
+        "description" => "string",
+        "id" => "string",
+        "merchantPaypalAccount" => "string",
+    );
 }

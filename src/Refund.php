@@ -3,28 +3,25 @@
 namespace AcceptOn;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * A charge to a customer.
+ *
+ * @property integer $amount The amount of the refund in cents.
+ * @property array $created Date and time of the charge.
+ * @property string $currency The ISO code of the currencey charged.
+ * @property string $id The charge identifier.
+ * @property mixed[] $metadata Any metadata about the charge.
+ * @property string $reason The reason for the refund.
+ * @property string $remoteId The charge identifier on the processor.
  */
 class Refund extends \AcceptOn\Base
 {
-    /** @var integer The amount in cents of the refund. */
-    public $amount;
-
-    /** @var string Date and time of the refund in ISO-8601 format. */
-    public $createdAt;
-
-    /** @var string The ISO code of the currency charged. */
-    public $currency;
-
-    /** @var string The refund identifier. */
-    public $id;
-
-    /** @var mixed[] Any metadata about the refund. */
-    public $metadata;
-
-    /** @var string The reason for the refund. */
-    public $reason;
-
-    /** @var string The refund identifier on the processor. */
-    public $remoteId;
+    protected static $allowedProperties = array(
+        "amount" => "int",
+        "created" => "date",
+        "currency" => "string",
+        "id" => "string",
+        "metadata" => "object",
+        "reason" => "string",
+        "remoteId" => "string",
+    );
 }
