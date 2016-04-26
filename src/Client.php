@@ -12,6 +12,7 @@ class Client
     use API\Promotion;
     use API\Querying;
     use API\Refunding;
+    use API\Subscribing;
     use API\Tokenization;
     use API\Utils;
 
